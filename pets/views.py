@@ -10,9 +10,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 class PetsViewSet(viewsets.ModelViewSet):
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filterset_fields = ('name', 'species', 'country_of_origin', 'owner__username')
     search_fields = ('name', 'species', 'country_of_origin', 'owner__username')
+    ordering_fields = ('owner__username', 'name')
 
 
 class UserViewSet(viewsets.ModelViewSet):

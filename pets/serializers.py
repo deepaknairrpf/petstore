@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class PetSerializer(serializers.ModelSerializer):
-    owner_username = serializers.PrimaryKeyRelatedField(source='owner', queryset=User.objects.all())
+    owner_username = serializers.CharField(source="owner.username", read_only=True)
 
     class Meta:
         model = Pet
